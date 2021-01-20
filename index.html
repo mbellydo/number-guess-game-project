@@ -13,18 +13,19 @@
     <p>You have 10 attempts to guess the right number.</p>
     </br>
     <div id="wrapper">
-        <form class="form">
-            <label2 for="guessField" id="guess">Guess a number</label>
-            <input type="text" id="guessField" class="guessField">
-            <input type="submit" id="subt" value="Submit guess" class="guessSubmit">
-        </form>
+        <label for="guessField" id="guess">Guess a number</label>
+        <input type="text" id="guessField" class="guessField" v-model="number">
+        <input type="submit" id="subt" value="Submit guess" class="guessSubmit" :disabled="number == numeroAleatorio" @click="guessNumber" >
 
         <div class="resultParas">
-            <p >Previous Guesses: <span class="guesses"></span></p>
-            <p >Guesses Remaining: <span class="lastResult">10</span></p>
-            <p class="lowOrHi"></p>
+            <p >Previous Guesses: <span class="guesses">{{guesses}}</span></p>
+            <p >Guesses Remaining: <span class="lastResult">{{attempts}}</span></p>
+            <p class="lowOrHi">{{result}}</p>
+            <input type="submit" id="newGame" value="Start a new game" class="guessSubmit" v-if="number == numeroAleatorio" @click="newGame">
         </div>
     </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js"></script>
 </body>
 </html>
